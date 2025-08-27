@@ -86,7 +86,7 @@ const useNetworkServesBySystemMenu = () => {
     const systemMenuByDelete = (menuId: number, extendConfig?: RequestConfigOptions, options?: RequestOptions) => {
         try {
             return useRequest().delete(returnOnRequestConfig({
-                url: `/system/system/menu/${menuId}`, token: true
+                url: `/system/menu/${menuId}`, token: true
             }, extendConfig), options)
         } catch (error) {
             throw new Error(error);

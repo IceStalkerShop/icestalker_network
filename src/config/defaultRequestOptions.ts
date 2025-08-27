@@ -2,7 +2,7 @@ import {CreateRequestOptions, RequestConfigOptions, RequestHooks} from "icestalk
 import useRequest from "./useRequest";
 
 
-const requestHooks: RequestHooks = {
+export const requestHooks: RequestHooks = {
     // 请求前
     beforeRequestHook: (config) => {
         return config;
@@ -100,12 +100,17 @@ const tokenSecurity = (config: RequestConfigOptions) => {
     // 设置接口auth权限配置
     const {token} = config;
     if (token) {
-        const token = window.localStorage.getItem('token') || '';
-        config.headers.authorization = `Bearer ${token}`;
+        config.headers.authorization = `Bearer ${getToken()}`;
     }
 
     return config;
 };
+
+
+export const getToken = () => {
+    return window.localStorage.getItem('token') || '';
+}
+
 
 const defaultRequestOptions: CreateRequestOptions = {
     timeout: 10000,

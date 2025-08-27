@@ -40,13 +40,34 @@ export type TypeByStatusByNumber = 0 | 1;
 
 export declare namespace APIByParams {
 
+
+    type TypeByMemberListParams = {
+        pageParams: TypeByPageParams<'id' | 'createTime' | 'updateTime'>,
+        keyword: string,
+        source?: 'MINI_PROGRAM' | 'APP' | 'PC_WEB' | 'H5' | 'OFFLINE_STORE' | 'WECHAT',
+        createBeginTime?: string
+        createEndTime?: string
+
+    }
+
+
+    type TypeByMemBerParams = {
+        nickname: string,
+        phone: string,
+        email?: string
+        sex?: 'UNKNOWN' | 'MAN' | 'WOMAN',
+        birthday?: string,
+        source: 'MINI_PROGRAM' | 'APP' | 'PC_WEB' | 'H5' | 'OFFLINE_STORE' | 'WECHAT'
+    }
+
+
     /**
      * 表格分页基础类型
      */
-    type TypeByPageParams = {
-        current: number, size: number, sortingFields: {
-            sortField: string, sortOrder: 'desc' | 'asc', extra: Record<any, any>,
-        }
+    type TypeByPageParams<T> = {
+        current: number, size: number, sortingFields?: Array<{
+            sortField: T, sortOrder: 'desc' | 'asc',
+        }>, extra?: Record<any, any>,
     }
 
 
@@ -146,7 +167,7 @@ export declare namespace APIByParams {
     /**
      * 用户分页参数
      */
-    type TypeByUserPageParams = TypeByPageParams & {
+    type TypeByUserPageParams = TypeByPageParams<any> & {
         param: Record<any, any>
     }
 
@@ -154,7 +175,7 @@ export declare namespace APIByParams {
      * 获取消息分页
      */
 
-    type TypeByNotifyPageParams = TypeByPageParams & {
+    type TypeByNotifyPageParams = TypeByPageParams<any> & {
         param: {
             targetType: 'ADMIN' | 'CUSTOMER', keyword: string
         }
@@ -215,7 +236,7 @@ export declare namespace APIByResponse {
         sex: string
         avatar: string
         status: string
-        createTime: number
+        createTime: number, perms: Array<string>, roleCodes: Array<string>
     }
 
     type TypeByResponseByNotify = {
@@ -269,7 +290,7 @@ export declare namespace APIByResponse {
         "id": number,
         "name": string,
         "parentId": number,
-        "type": {value:number,label:string},
+        "type": { value: number, label: string },
         "perms": string,
         "path": string,
         "component": string,
@@ -323,6 +344,55 @@ export declare namespace APIByResponse {
         uuid: string
         imageBase64: string
         captchaType: string
+    }
+
+
+    type albumNode = {
+        "id": number, "name": string, "parentId": number, "sortIndex": number, "children": Array<albumNode>
+    }
+
+    type  TypeResponseByAlbumNodes = {
+        albumNodes: Array<albumNode>
+    }
+    type TypeResponseByEnum = {
+        label: any, value: any
+    }
+
+    type TypeResponseByMember = {
+        id: number
+        nickname: string
+        sex: string | TypeResponseByEnum
+        countryCode: string
+        phone: string
+        avatar: string
+        source: string | TypeResponseByEnum
+        status: string | TypeResponseByEnum
+        createTime: number
+        memberLevel: string
+        balance: number
+        frozenBalance: number
+        growthValue: number
+        totalOrderCount: number
+        totalOrderAmount: number
+        lastOrderTime: number
+    }
+
+    type TypeResponseByMemberAddress = {
+        id: number
+        memberId: number
+        consignee: string
+        phoneCountryCode: string
+        phone: string
+        countryCode: string
+        province: string
+        city: string
+        district: string
+        detailAddress: string
+        fullAddress: string
+        stateCode: string
+        town: string
+        postalCode: string
+        defaulted: string
     }
 
 

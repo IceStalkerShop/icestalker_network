@@ -1,6 +1,6 @@
 import useNetworkByUpload from "../config/useUploadRequest";
-import {APIByParams} from "../typings/typings";
-import defaultRequestOptions from "../config/defaultRequestOptions";
+import {APIByParams, APIByResponse} from "../typings/typings";
+import defaultRequestOptions, {getToken} from "../config/defaultRequestOptions";
 
 const useNetworkServersByUpload = () => {
 
@@ -10,11 +10,10 @@ const useNetworkServersByUpload = () => {
         formData.append('file', params.file);
         const {
             start, cancel
-        } = useNetworkByUpload({
-            data: formData,
-            url: `${defaultRequestOptions.baseURL}/third/file/upload/file`,
-            headerConfig: params.headerConfig,
-            uploadProgressFn: params.uploadProgressFn
+        } = useNetworkByUpload<APIByResponse.TypeByResponseUploadResult>({
+            data: formData, url: `${defaultRequestOptions.baseURL}/third/file/upload/file`, headerConfig: {
+                ...params.headerConfig, 'authorization': `Bearer ${getToken()}`,
+            }, uploadProgressFn: params.uploadProgressFn
         })
         return {
             start, cancel
@@ -42,11 +41,10 @@ const useNetworkServersByUpload = () => {
 
         const {
             start, cancel
-        } = useNetworkByUpload({
-            data: formData,
-            url: `${defaultRequestOptions.baseURL}/third/file/upload/file`,
-            headerConfig: params.headerConfig,
-            uploadProgressFn: params.uploadProgressFn
+        } = useNetworkByUpload<APIByResponse.TypeByResponseUploadResultByImage>({
+            data: formData, url: `${defaultRequestOptions.baseURL}/third/file/upload/file`, headerConfig: {
+                ...params.headerConfig, 'authorization': `Bearer ${getToken()}`,
+            }, uploadProgressFn: params.uploadProgressFn
         })
         return {
             start, cancel

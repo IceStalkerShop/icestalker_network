@@ -8,6 +8,8 @@ import useNetworkServersByUpload from "./networkServers/networkServersByUpload";
 import useNetworkServersByAuth from "./networkServers/networkServersByAuth";
 import useNetworkServersByLogistics from "./networkServers/networkServersByLogistics";
 import useNetworkServesByVerifyCode from "./networkServers/networkServesByVerifyCode";
+import networkServersBySystemAlbum from "./networkServers/networkServersBySystemAlbum";
+import networkServersByMember from "./networkServers/networkServersByMember";
 
 const useIceStalkerNetwork = () => {
     return {
@@ -20,7 +22,9 @@ const useIceStalkerNetwork = () => {
         useNetworkServersByLogistics,
         useNetworkServesByVerifyCode,
         userNetworkServersBySystemByUser,
-        useNetworkServesBySystemMenu
+        useNetworkServesBySystemMenu,
+        networkServersBySystemAlbum,
+        networkServersByMember
     }
 }
 
