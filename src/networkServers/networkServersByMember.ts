@@ -56,9 +56,9 @@ const networkServersByMember = () => {
     }
 
 
-    const systemByPostByMemberChange = (memberId: string, extendConfig?: RequestConfigOptions, options?: RequestOptions) => {
+    const systemByPutByMemberChange = (memberId: string, extendConfig?: RequestConfigOptions, options?: RequestOptions) => {
         try {
-            return useRequest().get<APIByResponse.TypeByResponseBySuccess<any>>(returnOnRequestConfig({
+            return useRequest().put<APIByResponse.TypeByResponseBySuccess<any>>(returnOnRequestConfig({
                 url: `/member/change/${memberId}`, token: true
             }, extendConfig), options)
         } catch (error) {
@@ -69,7 +69,7 @@ const networkServersByMember = () => {
     const systemByGetByMemberInfoById = (memberId: string, extendConfig?: RequestConfigOptions, options?: RequestOptions) => {
         try {
             return useRequest().get<APIByResponse.TypeByResponseBySuccess<APIByResponse.TypeResponseByMember>>(returnOnRequestConfig({
-                url: `/member/${memberId}`, token: true
+                url: `/member/edit/${memberId}`, token: true
             }, extendConfig), options)
         } catch (error) {
             throw new Error(error);
@@ -92,7 +92,7 @@ const networkServersByMember = () => {
         systemByPostByMember,
         systemByPutByMember,
         systemByPostByMemberByList,
-        systemByPostByMemberChange,
+        systemByPutByMemberChange,
         systemByGetByMemberInfoById,
         systemByGetByMemberAddressById
     }

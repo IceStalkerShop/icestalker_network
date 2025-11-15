@@ -40,6 +40,52 @@ export type TypeByStatusByNumber = 0 | 1;
 
 export declare namespace APIByParams {
 
+    type TypeByCategoryListParams = {
+        pageParams: TypeByPageParams<'id' | 'createTime' | 'updateTime'>,
+        name?: string
+        shortName?: string
+        parentId?: number
+        level?: number
+        isHot?: string
+        isShow?: string
+        status?: string
+    }
+
+    type TypeBySpuListParams = {
+        pageParams: TypeByPageParams<any>,
+        name?: string
+    }
+
+    type TypeByServicesListParams = {
+        pageParams: TypeByPageParams<'id' | 'createTime' | 'updateTime'>,
+        name?: string
+    }
+
+
+    type TypeByBrandListParams = {
+        pageParams: TypeByPageParams<'id' | 'createTime' | 'updateTime'>,
+        name?: string
+        firstLetter?: string
+        isHot?: string
+        isShow?: string
+        auditStatus?: string
+        shopId?: number
+        tenantId?: string
+    }
+
+
+    type TypeByProdListParams = {
+        pageParams: TypeByPageParams<'id' | 'createTime' | 'updateTime'>,
+        type?: 'NORMAL' | 'CARD' | 'VIRTUAL'
+        brandId?: string
+        name?: string
+        categoryId?: string
+        shopId?: string
+        tenantId?: number
+        status?: 'ON' | 'OFF'
+        auditStatus?: 'PENDING' | 'APPROVE' | 'REJECTED'
+    }
+
 
     type TypeByMemberListParams = {
         pageParams: TypeByPageParams<'id' | 'createTime' | 'updateTime'>,
@@ -58,6 +104,144 @@ export declare namespace APIByParams {
         sex?: 'UNKNOWN' | 'MAN' | 'WOMAN',
         birthday?: string,
         source: 'MINI_PROGRAM' | 'APP' | 'PC_WEB' | 'H5' | 'OFFLINE_STORE' | 'WECHAT'
+    }
+
+    type TypeByBrandParams = {
+        name: string
+        firstLetter?: string
+        logo?: string
+        description?: string
+        isHot?: string
+        isShow?: string
+        sort?: number
+    }
+
+
+    type TypeByProdParams = {
+        type: string
+        medias: Array<{
+            mediaType: string
+            url: string
+            title: string
+            sort: number
+        }>
+        name: string
+        brandId: number
+        weight: number
+        categoryId: number
+        shopCategoryId: number
+        barcode: string
+        spuCode: string
+        keywords: string
+        description: string
+        status: string
+        auditStatus: string
+        price: number
+        marketPrice: number
+        templateId: number
+        attrs: Array<{
+            spuId: number
+            attrId: number
+            attrName: string
+            attrType: string
+            attrImage: string
+            value: string
+            extraPrice: number
+            sort: number
+        }>
+        skus: Array<{
+            spuId: number
+            skuCode: string
+            barcode: string
+            name: string
+            imageUrl: string
+            price: number
+            stock: number
+            status: string
+        }>
+        stockTotal: number
+        limitType: string
+        limitCycle: string
+        limitValue: number
+        freightType: string
+        freightFee: number
+        freightTemplateId: number
+        detailHtml: string
+        tags: Array<any>
+        serviceIds: Array<any>
+        salesVirtual: number
+        relatedSpuIds: Array<any>
+        relatedArticleIds: Array<any>
+    }
+
+
+    type TypeByCategoryParams = {
+        name: string
+        shortName?: string
+        parentId: number
+        level: number
+        image?: string
+        unit?: string
+        seoTitle?: string
+        keywords?: string
+        description?: string
+        sort?: number
+        isHot?: string
+        isShow?: string
+        status?: string
+    }
+
+
+    type TypeByTagParams = {
+        name: string
+        shortName?: string
+        parentId: number
+        level: number
+        image?: string
+        unit?: string
+        seoTitle?: string
+        keywords?: string
+        description?: string
+        sort?: number
+        isHot?: string
+        isShow?: string
+        status?: string
+    }
+
+
+    type TypeBySpuParams = {
+        name: string
+        description: string
+        status: string
+        attrs: Array<{
+            name: string
+            type: 'attr' | 'spec' | 'extraSpec'
+            sort: number
+            description: string
+        }>
+    }
+
+
+    type TypeByServicesParams = {
+        name: string
+        description?: string
+        icon?: string
+        sort?: number
+        isDefault?: string
+    }
+
+    type TypeBySpuParamsByEdit = {
+        id: string
+        name: string
+        description: string
+        status: string
+        attrs: Array<{
+            id: string
+            name: string
+            type: 'attr' | 'spec' | 'extraSpec'
+            sort: number
+            description: string
+        }>
     }
 
 
@@ -376,6 +560,66 @@ export declare namespace APIByResponse {
         totalOrderAmount: number
         lastOrderTime: number
     }
+
+
+    type TypeResponseByCategory = {
+        id: number
+        name: string
+        shortName: string
+        parentId: number
+        level: number
+        image: string
+        unit: string
+        seoTitle: string
+        keywords: string
+        description: string
+        sort: number
+        isHot: string | TypeResponseByEnum
+        isShow: string | TypeResponseByEnum
+        status: string | TypeResponseByEnum
+    }
+    type TypeResponseByServices = {
+        id: number
+        name: string
+        description: string
+        icon: string
+        sort: number
+        isDefault: string | TypeResponseByEnum
+    }
+
+
+    type TypeResponseBySpu = {
+        id: number
+        name: string
+        description: string
+        status: string
+        tenantId: string
+        shopId: number
+        attrs: Array<{
+            id: number
+            templateId: number
+            name: string
+            type: 'attr' | 'spec' | 'extra_spec'
+            sort: number
+            description: string
+        }>
+    }
+
+
+    type TypeResponseByBrand = {
+        id: number
+        name: string
+        firstLetter: string
+        logo: string
+        description: string
+        isHot: string
+        isShow: string
+        sort: number
+        auditStatus: string
+        shopId: number
+        tenantId: string
+    }
+
 
     type TypeResponseByMemberAddress = {
         id: number

@@ -10,6 +10,12 @@ import useNetworkServersByLogistics from "./networkServers/networkServersByLogis
 import useNetworkServesByVerifyCode from "./networkServers/networkServesByVerifyCode";
 import networkServersBySystemAlbum from "./networkServers/networkServersBySystemAlbum";
 import networkServersByMember from "./networkServers/networkServersByMember";
+import networkServersByBrand from "./networkServers/networkServersByBrand";
+import useNetworkServersByBrand from "./networkServers/networkServersByBrand";
+import networkServersByCategory from "./networkServers/networkServersByCategory";
+import useNetworkServersBySpu from "./networkServers/networkServersBySpu";
+import useNetworkServersByServices from "./networkServers/networkServersByServices";
+import useNetworkServersByProduction from "./networkServers/networkServersByProduction";
 
 const useIceStalkerNetwork = () => {
     return {
@@ -23,8 +29,17 @@ const useIceStalkerNetwork = () => {
         useNetworkServesByVerifyCode,
         userNetworkServersBySystemByUser,
         useNetworkServesBySystemMenu,
+        useNetworkServersByBrand,
+        useNetworkServersBySpu,
+        useNetworkServersByServices,
+        useNetworkServersByProduction,
+        // 命名错误
         networkServersBySystemAlbum,
-        networkServersByMember
+        networkServersByMember,
+        // 统一命名规范
+        useNetworkServersByMember: networkServersByMember,
+        useNetworkServersBySystemAlbum: networkServersBySystemAlbum,
+        useNetworkServersByCategory: networkServersByCategory
     }
 }
 
