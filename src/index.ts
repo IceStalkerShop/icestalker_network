@@ -16,6 +16,8 @@ import networkServersByCategory from "./networkServers/networkServersByCategory"
 import useNetworkServersBySpu from "./networkServers/networkServersBySpu";
 import useNetworkServersByServices from "./networkServers/networkServersByServices";
 import useNetworkServersByProduction from "./networkServers/networkServersByProduction";
+import useNetworkServersByTag from "./networkServers/networkServersByTag";
+import useNetworkServersByComment from "./networkServers/networkServersByComment";
 
 const useIceStalkerNetwork = () => {
     return {
@@ -33,6 +35,8 @@ const useIceStalkerNetwork = () => {
         useNetworkServersBySpu,
         useNetworkServersByServices,
         useNetworkServersByProduction,
+        useNetworkServersByTag,
+        useNetworkServersByComment,
         // 命名错误
         networkServersBySystemAlbum,
         networkServersByMember,

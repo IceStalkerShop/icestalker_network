@@ -6,6 +6,7 @@ import useRequest from "../config/useRequest";
 import {RequestConfigOptions} from "icestalker_request/dist/request/requestType";
 import {RequestOptions} from "icestalker_request/src/types/axios";
 import {returnOnRequestConfig} from "./utils";
+import defaultRequestOptions from "../config/defaultRequestOptions";
 
 /**
  * 类目服务接口

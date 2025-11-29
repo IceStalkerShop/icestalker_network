@@ -46,6 +46,27 @@ const useNetworkServersByProduction = () => {
 
 
     /**
+     * 修改商品指定字段
+     * @param data
+     * @param extendConfig
+     * @param options
+     */
+    const prodByEditByField = (data: {
+        id: string,
+        field: string,
+        value: string
+    }, extendConfig?: RequestConfigOptions, options?: RequestOptions) => {
+        try {
+            return useRequest().put<APIByResponse.TypeByResponseBySuccess<any>>(returnOnRequestConfig({
+                url: '/prod/spu/field', token: true, data
+            }, extendConfig), options)
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+
+    /**
      * 上架商品
      * @param id
      * @param extendConfig
@@ -136,7 +157,8 @@ const useNetworkServersByProduction = () => {
         prodByPostByList,
         prodByEdit,
         prodByDown,
-        prodByUp
+        prodByUp,
+        prodByEditByField
     }
 
 

@@ -10,7 +10,7 @@ import {returnOnRequestConfig} from "./utils";
 /**
  * 标签服务接口
  */
-const networkServersByTag = () => {
+const useNetworkServersByTag = () => {
 
     /**
      * 新增标签
@@ -21,7 +21,7 @@ const networkServersByTag = () => {
     const tagByAdd = (data: APIByParams.TypeByTagParams, extendConfig?: RequestConfigOptions, options?: RequestOptions) => {
         try {
             return useRequest().post<APIByResponse.TypeByResponseBySuccess<any>>(returnOnRequestConfig({
-                url: '/prod/category', token: true, data
+                url: '/prod/tag', token: true, data
             }, extendConfig), options)
         } catch (error) {
             throw new Error(error);
@@ -30,17 +30,17 @@ const networkServersByTag = () => {
 
 
     /**
-     * 编辑类目
+     * 编辑标签
      * @param data
      * @param extendConfig
      * @param options
      */
-    const categoryByEdit = (data: APIByParams.TypeByCategoryParams & {
+    const tagByEdit = (data: APIByParams.TypeByTagParams & {
         id: string
     }, extendConfig?: RequestConfigOptions, options?: RequestOptions) => {
         try {
             return useRequest().put<APIByResponse.TypeByResponseBySuccess<any>>(returnOnRequestConfig({
-                url: '/prod/category', token: true, data
+                url: '/prod/tag', token: true, data
             }, extendConfig), options)
         } catch (error) {
             throw new Error(error);
@@ -49,19 +49,16 @@ const networkServersByTag = () => {
 
 
     /**
-     * 类目列表
+     * 标签列表
      * @param data
      * @param extendConfig
      * @param options
      */
-    const categoryByPostByList = (data: APIByParams.TypeByCategoryListParams, extendConfig?: RequestConfigOptions, options?: RequestOptions) => {
+    const tagByPostByList = (data: APIByParams.TypeByCategoryListParams, extendConfig?: RequestConfigOptions, options?: RequestOptions) => {
         try {
-            return useRequest().post<APIByResponse.TypeByResponseBySuccess<APIByResponse.TypeByResponseByPage<APIByResponse.TypeResponseByCategory
-                & {
-                children: Array<APIByResponse.TypeResponseByCategory>
-            }
+            return useRequest().post<APIByResponse.TypeByResponseBySuccess<APIByResponse.TypeByResponseByPage<APIByResponse.TypeResponseByTag
             >>>(returnOnRequestConfig({
-                url: '/prod/category/page', token: true, data
+                url: '/prod/tag/page', token: true, data
             }, extendConfig), options)
         } catch (error) {
             throw new Error(error);
@@ -70,15 +67,15 @@ const networkServersByTag = () => {
 
 
     /**
-     * 删除类目
+     * 删除标签
      * @param data
      * @param extendConfig
      * @param options
      */
-    const categoryByDelete = (data: Array<string>, extendConfig?: RequestConfigOptions, options?: RequestOptions) => {
+    const tagByDelete = (data: Array<string>, extendConfig?: RequestConfigOptions, options?: RequestOptions) => {
         try {
             return useRequest().post<APIByResponse.TypeByResponseBySuccess<any>>(returnOnRequestConfig({
-                url: '/prod/category/batchRemove', token: true, data: {ids: data}
+                url: '/prod/tag/batchRemove', token: true, data: {ids: data}
             }, extendConfig), options)
         } catch (error) {
             throw new Error(error);
@@ -86,44 +83,32 @@ const networkServersByTag = () => {
     }
 
     /**
-     * 获取类目
+     * 获取标签详情
      * @param id
      * @param extendConfig
      * @param options
      */
-    const categoryById = (id: string, extendConfig?: RequestConfigOptions, options?: RequestOptions) => {
+    const tagById = (id: string, extendConfig?: RequestConfigOptions, options?: RequestOptions) => {
         try {
-            return useRequest().get<APIByResponse.TypeByResponseBySuccess<APIByResponse.TypeResponseByCategory>>(returnOnRequestConfig({
-                url: `/prod/category/${id}`, token: true,
+            return useRequest().get<APIByResponse.TypeByResponseBySuccess<APIByResponse.TypeResponseByTag>>(returnOnRequestConfig({
+                url: `/prod/tag/${id}`, token: true,
             }, extendConfig), options)
         } catch (error) {
             throw new Error(error);
         }
     }
 
-    const categoryByTree = (extendConfig?: RequestConfigOptions, options?: RequestOptions) => {
-        try {
-            return useRequest().get<APIByResponse.TypeByResponseBySuccess<Array<APIByResponse.TypeResponseByCategory & {
-                children: Array<APIByResponse.TypeResponseByCategory>
-            }>>>(returnOnRequestConfig({
-                url: `/prod/category/tree`, token: true,
-            }, extendConfig), options)
-        } catch (error) {
-            throw new Error(error);
-        }
-    }
 
 
     return {
         tagByAdd,
-        categoryByEdit,
-        categoryByPostByList,
-        categoryByDelete,
-        categoryById,
-        categoryByTree
+        tagByEdit,
+        tagByPostByList,
+        tagByDelete,
+        tagById,
     }
 
 
 }
 
-export default networkServersByTag
+export default useNetworkServersByTag

@@ -51,6 +51,17 @@ export declare namespace APIByParams {
         status?: string
     }
 
+
+    type TypeByCommentListParams = {
+        pageParams: TypeByPageParams<'id' | 'createTime' | 'updateTime'>,
+        spuId?: number
+        memberId?: number
+        isRecommend?: string
+        isTop?: string
+        hasPicture?: string
+        auditStatus?: string
+    }
+
     type TypeBySpuListParams = {
         pageParams: TypeByPageParams<any>,
         name?: string
@@ -206,6 +217,22 @@ export declare namespace APIByParams {
         isHot?: string
         isShow?: string
         status?: string
+    }
+
+    type TypeByCommentParams = {
+        spuId: number
+        memberId: number
+        memberName: string
+        memberAvatar: string
+        parentId: number
+        star: number
+        tags: Array<any>
+        content: string
+        commentTime: number
+        commentImages: Array<any>
+        isRecommend: string
+        isTop: string
+        sort: number
     }
 
 
@@ -578,6 +605,47 @@ export declare namespace APIByResponse {
         isShow: string | TypeResponseByEnum
         status: string | TypeResponseByEnum
     }
+
+
+    type TypeResponseByTag = {
+
+        id: number
+        name: string
+        alias: string
+        description: string
+        sort: number
+        shopId: number
+        tenantId: string
+        createTime: number
+        spuTags: Array<{
+            id: number
+            spuId: number
+            tagId: number
+        }>
+
+    }
+
+    type TypeResponseByComment = {
+        id?: number
+        spuId: number
+        memberId: number
+        memberName: string
+        memberAvatar: string
+        parentId: number
+        star: number
+        tags: Array<any>
+        content: string
+        commentTime: number
+        commentImages: Array<any>
+        isRecommend: string
+        isTop: string
+        sort: number
+        auditStatus: string
+        shopId: number
+        tenantId: string
+    }
+
+
     type TypeResponseByServices = {
         id: number
         name: string

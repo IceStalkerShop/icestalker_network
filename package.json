@@ -2,7 +2,7 @@
   "name": "icestalker_net_work",
   "author": "yuri_star",
   "module": "dist/icestalker_net_work.esm.js",
-  "version": "0.3.2",
+  "version": "0.3.6",
   "license": "MIT",
   "main": "dist/icestalker_net_work.cjs.production.min.js",
   "typings": "dist/index.d.ts",
